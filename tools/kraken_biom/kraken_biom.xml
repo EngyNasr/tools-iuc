@@ -54,7 +54,7 @@ kraken-biom
         <param argument="--fmt" type="select" optional="true" label="Output Format" help="Set the output format of the BIOM table. Default is HDF5">
             <option value="tsv">TSV</option>
             <option value="json">JSON</option>
-            <option value="hdf5" selected="true">Biom2 (HDF5)</option>
+            <option value="hdf5" selected="true">Biom2 [HDF5]</option>
         </param>
     </inputs>
     <outputs>
