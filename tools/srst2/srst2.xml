@@ -21,13 +21,11 @@
         ln -s $s './$i-prev_output.txt' &&
     #end if
 #end for
-#if $use_gene_db.selector == "yes" 
-    #for $i, $s in enumerate($use_gene_db.gene_db)
-        #if $s
-            ln -s $s './$i-gene_db.fasta' &&
-        #end if
-    #end for
-#end if
+#for $i, $s in enumerate($use_gene_db.gene_db)
+    #if $s
+        ln -s $s './$i-gene_db.fasta' &&
+    #end if
+#end for
 #if $use_mlst_db.selector == "yes"
 #set ext_3=$use_mlst_db.mlst_definitions.datatype.file_ext
     ln -s $use_mlst_db.mlst_db './mlst_db.fasta' &&
@@ -99,17 +97,17 @@ srst2
     --keep_interim_alignment
 #end if
 #if 'report_new_consensus' in str($output_files_selector) and $use_gene_db.selector == "yes" and $use_mlst_db.selector == "yes"
-&& mkdir -p allelesOutput/ && cp *.output__input.*.pileup allelesOutput | true
+&& mkdir -p allelesOutput/ && cp *.output__input.*.pileup allelesOutput
 #end if
 #if $use_gene_db.selector == "yes" and  $use_gene_db.no_gene_details
-&& mkdir -p geneTypingOutput/ && cp output__genes__*__results.txt geneTypingOutput | true && cp output__fullgenes__*__results.txt geneTypingOutput | true
+&& mkdir -p geneTypingOutput/ && cp output__genes__*__results.txt geneTypingOutput && cp output__fullgenes__*__results.txt geneTypingOutput
 #end if
 #if 'save_scores' in str($output_files_selector)
-    && mkdir -p scoresOutput/ && cp *.scores scoresOutput | true
+    && mkdir -p scoresOutput/ && cp *.scores scoresOutput
 #end if
 #if $input.selector == "single" or $input.selector == "paired"
-&& mkdir -p bowtie2Alignments/ && cp *.sorted.bam bowtie2Alignments | true
-&& mkdir -p samtoolsPileup/ && cp output__input.*.pileup samtoolsPileup | true
+&& mkdir -p bowtie2Alignments/ && cp *.sorted.bam bowtie2Alignments
+&& mkdir -p samtoolsPileup/ && cp output__input.*.pileup samtoolsPileup
 #end if
     ]]></command>
     <inputs>
